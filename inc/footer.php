@@ -1,20 +1,6 @@
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
-               
-                <footer class="footer">
-                    
-                    <div class="footer-block author">
-                        <ul>
-                            <li> created by
-                                <a href="">DA</a>
-                            </li>
-                            <li>
-                                <a href="">get in touch</a>
-                            </li>
-                        </ul>
-                    </div>
-                </footer>
                 <div class="modal fade" id="modal-media">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">

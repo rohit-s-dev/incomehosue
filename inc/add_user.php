@@ -25,6 +25,25 @@
                         
             if ( !empty($a_username) ||  !empty($a_firstname) || !empty($a_lastname) || !empty($a_email) || !empty($a_number) || !empty($a_user_role) ) {
 
+
+                $sql = "SELECT * FROM users";
+                $sql_query = mysqli_query($con, $sql);
+                
+                while ( $rows = mysqli_fetch_assoc($sql_query) ) {
+
+                    $username = $rows['username'];
+                    $user_number = $rows['user_number'];
+                    $email = $rows['user_email'];
+
+                } 
+
+                if ( $a_email ==  $email || $a_username == $username || $a_number == $user_number ) {
+
+                    echo "<p class='text-danger'>User already taken</p>";
+                    exit();
+
+                }
+
                 if ( !filter_var($a_email, FILTER_VALIDATE_EMAIL) ) {
                     $msg = "<div class='alert alert-danger my-3'>Please Enter a valid email
                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -32,7 +51,7 @@
                     </button>
                     </div>";
                     echo $msg;
-
+                    exit();
                     
 
                 } else {
@@ -46,7 +65,7 @@
                     
                     $a_password_hash = password_hash($a_password, PASSWORD_DEFAULT);
 
-                    $a_query = "INSERT INTO users (username, user_firstname, user_lastname, user_pwd, user_number, user_email, user_role, user_date) VALUES ('$a_username', '$a_firstname', '$a_lastname', '$a_password_hash' ,'$a_number' , '$a_email', '$a_user_role', now() )";
+                    $a_query = "INSERT INTO users (username, user_firstname, user_lastname, user_pwd, user_number, user_email, user_role, user_date) VALUES ('$a_username', '$a_firstname', '$a_lastname', '$a_password_hash' ,'$a_number' , '$a_email', '$a_user_role', now())";
                     
                     $a_query_sql = mysqli_query($con, $a_query);
                     if (!$a_query_sql) {

@@ -1,12 +1,4 @@
 <?php include "db.php"; ?>
-<?php ob_start(); ?>
-<?php session_start(); ?>
-<?php 
-
-    if (!$_SESSION['user_role']) {
-        header("Location: login.php");
-    }
-?>
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
