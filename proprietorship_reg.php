@@ -10,8 +10,8 @@
 
     <?php 
         if (isset($_POST['p_submit'])) {
-            // Input Variables-----------------------------------------------------
 
+            // Input Variables-----------------------------------------------------
             // Firm Name
             $_part_firm_name = $_POST['part_firm_name'];
             $_part_firm_name = mysqli_real_escape_string($con, $_part_firm_name);
@@ -74,11 +74,18 @@
             // move uploaded files
             move_uploaded_file($_part_rent_agreement_temp, "images/uploads/proprietorship_doc/$_part_rent_agreement");
 
-            // Sql Query 
-            $_sql = "INSERT INTO proprietorship_form (prop_reatiler_name, prop_firm_name, prop_proprietorship_name, prop_aadhar_number, prop_pan_number, prop_ward_no, prop_circle_no, prop_holiding_no, prop_mobile_no, prop_email_id, prop_aadhar_file, prop_pan_card_file, prop_rent_agreement, prop_shop_banner) VALUES('', '$_part_firm_name', '$_part_proprietorship_name', '$_part_aadhar_number', '$_part_pan_number', '$_part_ward_no', '$_part_circle_no', '$_part_holiding_no', '$_part_mobile_no', '$_part_email_id', '$_part_aadhar_file', '$_part_pan_card_file', '$_part_shop_banner', '$_part_rent_agreement')";
+           if (empty($_part_firm_name) || empty($_part_proprietorship_name) || empty($_part_aadhar_number) || empty($_part_pan_number) || empty($_part_ward_no) || empty($_part_circle_no) || empty($_part_holiding_no) || empty($_part_mobile_no) || empty($_part_email_id) || empty($_part_aadhar_file) || empty($_part_pan_card_file) || empty($_part_shop_banner)) {
 
-            $_sql_query = mysqli_query($con, $_sql);
+            echo "All Fields must be filled before submitting";
+
+           } else {
+            // Sql 
+            $_sql = "INSERT INTO proprietorship_form (prop_reatiler_name, prop_firm_name, prop_proprietorship_name, prop_aadhar_number, prop_pan_number, prop_ward_no, prop_circle_no, prop_holiding_no, prop_mobile_no, prop_email_id, prop_aadhar_file, prop_pan_card_file, prop_rent_agreement, prop_shop_banner) VALUES('', '$_part_firm_name', '$_part_proprietorship_name', '$_part_aadhar_number', '$_part_pan_number', '$_part_ward_no', '$_part_circle_no', '$_part_holiding_no', '$_part_mobile_no', '$_part_email_id', '$_part_aadhar_file', '$_part_pan_card_file', '$_part_shop_banner', '$_part_rent_agreement')";
             
+            // sql_query  
+            $_sql_query = mysqli_query($con, $_sql); 
+           
+            }
 
         }
         
