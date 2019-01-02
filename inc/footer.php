@@ -82,7 +82,31 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
+
+        <!-- contact form -->
+        <section class="b-contact-quick">
+            <div class="card-title b-contact-quick-title py-3 text-white px-3 mb-0">
+                Quick Contact
+            </div>
+
+            <div class="card px-3 py-3 mb-0">
+                <form action="" method="post">
+                    <div class="form-group mb-4">
+                        <label for="name">Your name</label>
+                        <input type="text" name="name" placeholder="your name" id="name" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="message">Your message</label>
+                        <textarea name="message" id="message" cols="30" rows="3" class="form-control"></textarea>
+                    </div>
+                    <input type="submit" value="send" name="b-contact-quick-send" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
+                </form>
+            </div>
+        </section>
+        <!-- End of contact form -->
+
         <script src="js/vendor.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

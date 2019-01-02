@@ -1,4 +1,5 @@
 <aside class="sidebar">
+
     <div class="sidebar-container">
         <div class="sidebar-header">
             <div class="brand">
@@ -8,116 +9,163 @@
                 <span class="l l3"></span>
             </div> Income House </div>
         </div>
+        
         <nav class="menu">
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
+
                 <li class="active">
                     <a href="index.php">
                         <i class="fa fa-home"></i> Dashboard </a>
                 </li>
+
                 <li>
+
                     <a href="">
-                        <i class="fa fa-th-large"></i> Users Manager
+                        <i class="fa fa-users"></i> Retailer Management
                         <i class="fa arrow"></i>
                     </a>
+
                     <ul class="sidebar-nav">
 
                         <li>
                             <a href="users.php?source=add_user"> Create User </a>
                         </li>
+
                         <li>
                             <a href="users.php?source=all_users"> All users </a>
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-area-chart"></i> Banking
+                        <i class="fa arrow"></i>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#"> Kiosk Banking </a>
+                        </li>
+                        <li>
+                            <a href="#"> AEPS </a>
+                        </li>
+                        <li>
+                            <a href="#"> Money Transfer </a>
+                        </li>
+                        <li>
+                            <a href="#"> Mirco ATM </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-table"></i> Business Registration
+                        <i class="fa arrow"></i>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="proprietorship_reg.php"> Proprietorship Registration </a>
+                        </li>
+                        <li>
+                            <a href="company_registration.php"> Company Registration </a>
+                        </li>
+                        <li>
+                            <a href=""> Section 8 Registration </a>
+                        </li>
+                        <li>
+                            <a href="partnership_reg.php"> Partnership Registration </a>
+                        </li>
+                        <li>
+                            <a href="msme_reg.php"> MSME Registration </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-desktop"></i> E-Governance
+                        <i class="fa arrow"></i>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#"> Pan Card Franchisee </a>
+                        </li>
+                        <li>
+                            <a href="digital_signature.php"> Digital Signature </a>
+                        </li>
+                        <li>
+                            <a href="#"> IRCTC </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-file-text-o"></i> Tax Registration
+                        <i class="fa arrow"></i>
+                    </a>
 
-                    </ul>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-area-chart"></i> Charts
-                        <i class="fa arrow"></i>
-                    </a>
                     <ul class="sidebar-nav">
                         <li>
-                            <a href="charts-flot.html"> Flot Charts </a>
+                            <a href="itr.php"> ITR </a>
                         </li>
                         <li>
-                            <a href="charts-morris.html"> Morris Charts </a>
+                            <a href="#"> GST </a>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-table"></i> Tables
-                        <i class="fa arrow"></i>
-                    </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="static-tables.html"> Static Tables </a>
-                        </li>
-                        <li>
-                            <a href="responsive-tables.html"> Responsive Tables </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="forms.html">
-                        <i class="fa fa-pencil-square-o"></i> Forms </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-desktop"></i> UI Elements
-                        <i class="fa arrow"></i>
-                    </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="buttons.html"> Buttons </a>
-                        </li>
-                        <li>
-                            <a href="cards.html"> Cards </a>
-                        </li>
-                        <li>
-                            <a href="typography.html"> Typography </a>
-                        </li>
-                        <li>
-                            <a href="icons.html"> Icons </a>
-                        </li>
-                        <li>
-                            <a href="grid.html"> Grid </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-file-text-o"></i> Pages
-                        <i class="fa arrow"></i>
-                    </a>
 
+                <li>
+                    <a href="#">
+                        <i class="fa fa-book"></i> Education
+                        <i class="fa arrow"></i>
+                    </a>
                     <ul class="sidebar-nav">
                         <li>
-                            <a href="login.html"> Login </a>
+                            <a href="#"> UG Courses </a>
                         </li>
                         <li>
-                            <a href="signup.html"> Sign Up </a>
-                        </li>
-                        <li>
-                            <a href="reset.html"> Reset </a>
-                        </li>
-                        <li>
-                            <a href="error-404.html"> Error 404 App </a>
-                        </li>
-                        <li>
-                            <a href="error-404-alt.html"> Error 404 Global </a>
-                        </li>
-                        <li>
-                            <a href="error-500.html"> Error 500 App </a>
-                        </li>
-                        <li>
-                            <a href="error-500-alt.html"> Error 500 Global </a>
+                            <a href="#"> PG Courses </a>
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-podcast"></i> Insurance
+                        <i class="fa arrow"></i>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#"> Life Insurance </a>
+                        </li>
+                        <li>
+                            <a href="#"> Micro Insurance </a>
+                        </li>
+                        <li>
+                            <a href="#"> Health Insurance </a>
+                        </li>
+                        <li>
+                            <a href="#"> General Insurance </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-sitemap "></i> Devices
+                        <i class="fa arrow"></i>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#"> ---------- </a>
+                        </li>
+                        <li>
+                            <a href="#"> ---------- </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="">
-                        <i class="fa fa-sitemap"></i> Customize
+                        <i class="fa fa-sliders "></i> Customize
                         <i class="fa arrow"></i>
                     </a>
                     <ul class="sidebar-nav">
@@ -223,7 +271,7 @@
                     </li>
                 </ul>
                 <a href="">
-                    <i class="fa fa-cog"></i> Customize </a>
+                <i class="fa fa-cog"></i> Customize </a>
             </li>
         </ul>
     </footer>

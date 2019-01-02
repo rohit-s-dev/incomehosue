@@ -6,19 +6,33 @@
     if (!$_SESSION['user_role']) {
         header("Location: login.php");
     }
+
 ?>
 <!doctype html>
+
 <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Dashboard</title>
+        <title>Incomehouse</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="css/vendor.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/slick-theme.css">
         <!-- Theme initialization -->
+
+        <script>
+            $(function() {
+                $('.newstape').newstape();
+            });
+        </script>
+
 
         <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
@@ -34,4 +48,4 @@
             }
         </script>
     </head>
-    <body>
+<body>

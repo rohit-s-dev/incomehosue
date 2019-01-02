@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="table">
-                <table class="table  table-responsive table-bordered table-hover">
+                <table class="table  table-responsivetable-bordered table-hover">
                     <thead>
                         <tr>
                             <th>User ID</th>

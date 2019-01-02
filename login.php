@@ -8,18 +8,23 @@
                             Log In 
                         </h1>
                         <?php 
-                            if (isset($_GET['error'])) {
+                            
+                            if ( isset($_GET['error']) ) {
 
                                 $error = $_GET['error'];
 
                                 if ($error == 'invalid') {
+
                                     echo "<p class='text-danger'>invalid id or passowrd</p>";
                                 
                                 } 
                             }   
+                        
                         ?>
                     </header>
+
                     <div class="auth-content">
+
                         <p class="text-center">LOGIN TO CONTINUE</p>
 
                         <form action="inc/login_process.php" method="post">
@@ -38,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <!-- Reference block for JS -->
+
         <div class="ref" id="ref">
             <div class="color-primary"></div>
             <div class="chart">

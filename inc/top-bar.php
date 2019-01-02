@@ -5,8 +5,11 @@
         <button class="collapse-btn" id="sidebar-collapse-btn">
             <i class="fa fa-bars"></i>
         </button>
+        
     </div>
-    <div class="header-block header-block-nav">
+    <!-- <h4 class="ml-5 text-uppercase font-weight-bold"><?php echo 'welcome ' . $_SESSION['username']; ?></h4> -->
+    <div class="header-block header-block-nav"> 
+         
         <ul class="nav-profile">
             <li class="profile dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
