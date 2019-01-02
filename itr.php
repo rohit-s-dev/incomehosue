@@ -13,70 +13,70 @@
         <?php 
         if (isset($_POST['itr_form_submit'])) {
 
-            // ITR Forms Datas------------
+            // ITR Forms Datas---------------------------------------------------
             // ITR Pan Number
             $itr_pan_number = $_POST['itr_pan_number'];
 
             // itr_dob
-            $itr_dob = $_POST['itr_dob'];
+            $itr_dob =  $_POST['itr_dob'];
 
             // itr_first_name
-            $itr_first_name = $_POST['itr_first_name'];
+            $itr_first_name =  $_POST['itr_first_name'];
 
             // itr middle name
-            $itr_middle_name = $_POST['itr_middle_name'];
+            $itr_middle_name =  $_POST['itr_middle_name'];
 
             // itr last name
-            $itr_last_name = $_POST['itr_last_name'];
+            $itr_last_name =  $_POST['itr_last_name'];
             
             // itr pan number fill
-            $itr_pan_number_fill = $_POST['itr_pan_number_fill'];
+            $itr_pan_number_fill =  $_POST['itr_pan_number_fill'];
 
             // itr vill build
-            $itr_vill_build = $_POST['itr_vill_build'];
+            $itr_vill_build =  $_POST['itr_vill_build'];
 
             // itr area locality
-            $itr_area_locality = $_POST['itr_area_locality'];
+            $itr_area_locality =  $_POST['itr_area_locality'];
 
             // itr city district
-            $itr_city_district = $_POST['itr_city_district'];
+            $itr_city_district =  $_POST['itr_city_district'];
 
             // itr country
-            $itr_state = $_POST['itr_state'];
+            $itr_state =  $_POST['itr_state'];
 
             // itr country
-            $itr_country = $_POST['itr_country'];
+            $itr_country =  $_POST['itr_country'];
 
             // itr email
-            $itr_email = $_POST['itr_email'];
+            $itr_email =  $_POST['itr_email'];
 
             // itr mobile number
-            $itr_mobile_number = $_POST['itr_mobile_number'];
+            $itr_mobile_number =  $_POST['itr_mobile_number'];
 
             // itr aadhar
-            $itr_aadhar = $_POST['itr_aadhar'];
+            $itr_aadhar =  $_POST['itr_aadhar'];
 
             // itr deductions
             $itr_deductions = $_POST['itr_deductions'];
 
             // itr acc number
-            $itr_acc_numb = $_POST['itr_acc_numb'];
+            $itr_acc_numb =  $_POST['itr_acc_numb'];
 
             // itr acc branch
-            $itr_acc_branch = $_POST['itr_acc_branch'];
+            $itr_acc_branch =  $_POST['itr_acc_branch'];
 
             // itr acc ifsc
-            $itr_acc_ifsc = $_POST['itr_acc_ifsc'];
+            $itr_acc_ifsc =  $_POST['itr_acc_ifsc'];
 
             // itr bank name
-            $itr_bank_name = $_POST['itr_bank_name'];
+            $itr_bank_name =  $_POST['itr_bank_name'];
 
             // itr category
             $itr_category = $_POST['itr_category'];
 
 
-        // Form Validation 
-        if (empty($itr_pan_number) || empty($itr_dob) || empty($itr_first_name) || empty($itr_middle_name) || empty($itr_last_name) || empty($itr_pan_number_fill) || empty($itr_vill_build) || empty($itr_area_locality) || empty($itr_city_district) || empty($itr_city_district) || empty($itr_state) || empty($itr_country) || empty($itr_email) || empty($itr_mobile_number) || empty($itr_aadhar) || empty($itr_deductions) || empty($itr_acc_numb) || empty($itr_acc_branch) || empty($itr_acc_ifsc) || empty($itr_bank_name) || empty($itr_category)) {
+            // Form Validation 
+            if (empty($itr_pan_number) || empty($itr_dob) || empty($itr_first_name) || empty($itr_middle_name) || empty($itr_last_name) || empty($itr_pan_number_fill) || empty($itr_vill_build) || empty($itr_area_locality) || empty($itr_city_district) || empty($itr_city_district) || empty($itr_state) || empty($itr_country) || empty($itr_email) || empty($itr_mobile_number) || empty($itr_aadhar) || empty($itr_deductions) || empty($itr_acc_numb) || empty($itr_acc_branch) || empty($itr_acc_ifsc) || empty($itr_bank_name) || empty($itr_category)) {
 
             echo "Some Fields are empty";
         
@@ -94,8 +94,7 @@
 
         } else {
             
-            $a_query = "INSERT INTO itr_reg (itr_retailer_name, itr_pan_number, itr_dob, itr_first_name, itr_middle_name, itr_last_name, itr_pan_number_fill, itr_vill_building, itr_area_locality, itr_city_district, itr_state, itr_country, itr_email, itr_mobile_number, itr_aadhar, itr_deduction, itr_acc_number, itr_branch, itr_ifsc, itr_bank_name, itr_category) VALUES('$_SESSION['username']', '$itr_pan_number', '$itr_dob', '$itr_first_name', '$itr_middle_name', '$itr_last_name', '$itr_pan_number_fill', '' )";
-
+            $a_query = "INSERT INTO itr_reg (itr_retailer_name, itr_pan_number, itr_dob, itr_first_name, itr_middle_name, itr_last_name, itr_pan_number_fill, itr_vill_building, itr_area_locality, itr_city_district, itr_state, itr_country, itr_email, itr_mobile_number, itr_aadhar, itr_deduction, itr_acc_number, itr_branch, itr_ifsc, itr_bank_name, itr_category )";
         }
         
         

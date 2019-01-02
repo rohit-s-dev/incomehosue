@@ -86,7 +86,7 @@
         <!-- contact form -->
         <section class="b-contact-quick">
             <div class="card-title b-contact-quick-title py-3 text-white px-3 mb-0">
-                Quick Contact
+                Customer Care
             </div>
 
             <div class="card px-3 py-3 mb-0">
