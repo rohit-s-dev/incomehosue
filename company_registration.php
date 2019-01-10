@@ -421,8 +421,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Of Documents -->
 
+                <!-- End Of Documents -->
                 <input type="submit" value="Submit" name="c_r_submit" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
                 
             </form>

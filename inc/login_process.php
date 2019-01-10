@@ -10,7 +10,6 @@ if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($con, $number);
     $password = mysqli_real_escape_string($con, $password);
     
-
     $query = "SELECT * FROM users WHERE user_number = $number ";
 
     $select_user_query = mysqli_query($con, $query);
@@ -40,7 +39,7 @@ if (isset($_POST['login'])) {
         $_SESSION['user_number'] = $l_user_number;  
         $_SESSION['user_firstname'] = $l_user_firstname; 
         $_SESSION['user_lastname'] = $l_user_lastname; 
-        $_SESSION['user_email'] = $l_user_email; 
+        $_SESSION['user_email'] = $l_user_email;
 
         header("Location: ../index.php");
     }

@@ -6,101 +6,97 @@
     <div class="col-12 text-white p-2 mb-3" style=" background: #3a4651; ">
         <h6 class="">ITR FORM(PAN APPLICATION FORM)<span class="text-muted ml-3">Every field is  to submit</span></h6>
     </div>
+<?php 
+    if(isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        $sql_s = "SELECT * FROM users WHERE username = $username";
+    } 
+?>
 
     <div class="row">        
         <div class="col-12">
-
-        <?php 
-        if (isset($_POST['itr_form_submit'])) {
-
-            // ITR Forms Datas---------------------------------------------------
-            // ITR Pan Number
-            $itr_pan_number = $_POST['itr_pan_number'];
-
-            // itr_dob
-            $itr_dob =  $_POST['itr_dob'];
-
-            // itr_first_name
-            $itr_first_name =  $_POST['itr_first_name'];
-
-            // itr middle name
-            $itr_middle_name =  $_POST['itr_middle_name'];
-
-            // itr last name
-            $itr_last_name =  $_POST['itr_last_name'];
-            
-            // itr pan number fill
-            $itr_pan_number_fill =  $_POST['itr_pan_number_fill'];
-
-            // itr vill build
-            $itr_vill_build =  $_POST['itr_vill_build'];
-
-            // itr area locality
-            $itr_area_locality =  $_POST['itr_area_locality'];
-
-            // itr city district
-            $itr_city_district =  $_POST['itr_city_district'];
-
-            // itr country
-            $itr_state =  $_POST['itr_state'];
-
-            // itr country
-            $itr_country =  $_POST['itr_country'];
-
-            // itr email
-            $itr_email =  $_POST['itr_email'];
-
-            // itr mobile number
-            $itr_mobile_number =  $_POST['itr_mobile_number'];
-
-            // itr aadhar
-            $itr_aadhar =  $_POST['itr_aadhar'];
-
-            // itr deductions
-            $itr_deductions = $_POST['itr_deductions'];
-
-            // itr acc number
-            $itr_acc_numb =  $_POST['itr_acc_numb'];
-
-            // itr acc branch
-            $itr_acc_branch =  $_POST['itr_acc_branch'];
-
-            // itr acc ifsc
-            $itr_acc_ifsc =  $_POST['itr_acc_ifsc'];
-
-            // itr bank name
-            $itr_bank_name =  $_POST['itr_bank_name'];
-
-            // itr category
-            $itr_category = $_POST['itr_category'];
-
-
-            // Form Validation 
-            if (empty($itr_pan_number) || empty($itr_dob) || empty($itr_first_name) || empty($itr_middle_name) || empty($itr_last_name) || empty($itr_pan_number_fill) || empty($itr_vill_build) || empty($itr_area_locality) || empty($itr_city_district) || empty($itr_city_district) || empty($itr_state) || empty($itr_country) || empty($itr_email) || empty($itr_mobile_number) || empty($itr_aadhar) || empty($itr_deductions) || empty($itr_acc_numb) || empty($itr_acc_branch) || empty($itr_acc_ifsc) || empty($itr_bank_name) || empty($itr_category)) {
-
-            echo "Some Fields are empty";
-        
-            // Mobile number validation
-            } elseif (strlen($itr_mobile_number) < 10 || strlen($itr_mobile_number) > 10  ) {
-                
-                echo "Mobile number should be 10 digit";
-                
-            // Mobile number validation
-            } elseif (preg_replace('/\s+/', ' ', $itr_mobile_number)) {
-
-                echo "Mobile number should be 10 digit and no space";
-                
-            }
-
-        } else {
-            
-            $a_query = "INSERT INTO itr_reg (itr_retailer_name, itr_pan_number, itr_dob, itr_first_name, itr_middle_name, itr_last_name, itr_pan_number_fill, itr_vill_building, itr_area_locality, itr_city_district, itr_state, itr_country, itr_email, itr_mobile_number, itr_aadhar, itr_deduction, itr_acc_number, itr_branch, itr_ifsc, itr_bank_name, itr_category )";
-        }
-        
-        
-        ?>
             <form action="" method="post">
                 <!-- pan/dob detail -->
+            <?php 
+                if (is_post_request()) {
+
+                    // Escaping - - - - -
+                    $itr_pan_number = h(escape($con, $_POST['itr_pan_number']));
+                    $itr_dob = h(escape($con, $_POST['itr_dob']));
+                    $itr_first_name = h(escape($con, $_POST['itr_first_name']));
+                    $itr_middle_name = h(escape($con, $_POST['itr_middle_name']));
+                    $itr_last_name = h(escape($con, $_POST['itr_last_name']));
+                    $itr_pan_number_fill = h(escape($con, $_POST['itr_pan_number_fill']));
+                    $itr_vill_build = h(escape($con, $_POST['itr_vill_build']));
+                    $itr_area_locality = h(escape($con, $_POST['itr_area_locality']));
+                    $itr_state = h(escape($con, $_POST['itr_state']));
+                    $itr_city_district = h(escape($con, $_POST['itr_city_district']));
+                    $itr_country = h(escape($con, $_POST['itr_country']));
+                    $itr_email = h(escape($con, $_POST['itr_email']));
+                    $itr_mobile_number = h(escape($con, $_POST['itr_mobile_number']));
+                    $itr_aadhar = h(escape($con, $_POST['itr_aadhar']));
+                    $itr_deductions = h(escape($con, $_POST['itr_deductions']));
+                    $itr_acc_numb = h(escape($con, $_POST['itr_acc_numb']));
+                    $itr_acc_branch = h(escape($con, $_POST['itr_acc_branch']));
+                    $itr_acc_ifsc = h(escape($con, $_POST['itr_acc_ifsc']));
+                    $itr_bank_name = h(escape($con, $_POST['itr_bank_name']));
+                    $itr_category = h(escape($con, $_POST['itr_category']));
+                    
+                    if(is_blank($itr_pan_number) || is_blank($itr_dob) || is_blank($itr_first_name) || is_blank($itr_middle_name) || is_blank($itr_last_name) || is_blank($itr_pan_number_fill) || is_blank($itr_vill_build) || is_blank($itr_area_locality) || is_blank($itr_city_district) || is_blank($itr_country) || is_blank($itr_email) || is_blank($itr_mobile_number) || is_blank($itr_aadhar) || is_blank($itr_deductions) || is_blank($itr_acc_numb)|| is_blank($itr_acc_branch) || is_blank($itr_acc_ifsc) || is_blank($itr_bank_name) || is_blank($itr_category)) {
+                        
+                        echo "<p class='text-danger'>Fields Can't be empty</p>";
+
+                    } elseif (m_numb($itr_mobile_number) === false) {
+
+                        echo "<p class='text-danger'>Invalid Phone Number or Do not add +91 or 0  </p>";
+
+                    } else {
+                        $sql = "INSERT INTO itr_reg (itr_retailer_name, itr_pan_number, itr_dob, itr_first_name, itr_middle_name, itr_last_name, itr_pan_number_fill, itr_vill_building, itr_area_locality, itr_city_district, itr_state, itr_country, itr_email, itr_mobile_number, itr_aadhar, itr_deduction, itr_acc_number, itr_branch, itr_ifsc, itr_bank_name, itr_category, itr_filling_date ) VALUES('$username', '$itr_pan_number', '$itr_dob', '$itr_first_name', '$itr_middle_name', '$itr_last_name', '$itr_pan_number_fill', '$itr_vill_build', '$itr_area_locality', '$itr_city_district', '$itr_state', '$itr_country', '$itr_email', '$itr_mobile_number', '$itr_aadhar', '$itr_deductions', '$itr_acc_numb', '$itr_acc_branch', '$itr_acc_ifsc', '$itr_bank_name', '$itr_category', now() )";
+
+                        $result = mysqli_query($con, $sql);
+
+                        if($result) {
+
+                            $send_to = sendto();
+                            $subject = "New ITR Reg Form Submitted";
+
+                            $header = "From : ". 'incomehouse' . "\r\n";
+                            $header .= "Reply To : ".'do not reply'. "\r\n";
+
+                            $message = "Submitted By : " . $username . "\r\n";
+                            $message .= "Pan Number : " . $itr_pan_number . "\r\n";
+                            $message .= "D-O-B : " . $itr_dob . "\r\n";
+
+                            $message .= "First Name : ". $itr_first_name . "\r\n";
+                            $message .= "Middle Name : " . $itr_middle_name. "\r\n";
+                            $message .= "Last Name : " . $itr_last_name . "\r\n";
+                            $message .= "Pan Number : " . $itr_pan_number_fill . "\r\n";
+                            $message .= "Vill Building : " . $itr_vill_build . "\r\n";
+                            $message .= "Area Locality : " . $itr_area_locality  . "\r\n";
+                            $message .= "City District : " . $itr_city_district  . "\r\n";
+                            $message .= "State : " . $itr_state . "\r\n";
+                            $message .= "Country : " . $itr_country  . "\r\n";
+                            $message .= "Email : " . $itr_email  . "\r\n";
+                            $message .= "Mobile Number : " . $itr_mobile_number  . "\r\n";
+                            $message .= "Aadhar Number : " . $itr_aadhar  . "\r\n";
+                            $message .= "ITR Deduction : " . $itr_deductions . "\r\n";
+                            $message .= "ACC Number : " . $itr_acc_numb  . "\r\n";
+                            $message .= "ACC Branch : " . $itr_acc_branch  . "\r\n";
+                            $message .= "ACC IFSC : " . $itr_acc_ifsc  . "\r\n";
+                            $message .= "ACC Bank Name : " . $itr_bank_name . "\r\n";
+                            $message .= "ITR Category : " . $itr_category . "\r\n";
+
+                            $itr_send = mail($send_to, $subject, $message, $header);
+
+                        }
+                        if($itr_send) {
+                            echo "<div class='text-success'> Form has been submitted </div>";
+                        } else {
+                            echo "<div class='text-danger'> Something Went Wrong </div>";
+                        }
+                    }
+                }
+            ?>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

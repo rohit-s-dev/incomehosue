@@ -1,67 +1,66 @@
-
 <?php include "inc/header.php"; ?>
 <?php include "inc/top-bar.php"; ?>
 <?php include "inc/side-nav.php"; ?>
+<?php session_start(); ?>
 
 <div class="container-fluid my-5 py-5">
     <div class="col-12 text-white p-2 mb-3" style=" background: #3a4651; ">
         <h4 class="text-center text-uppercase">Proprietorship Registration</h4>
     </div>
 
+    
+<?php 
+    if(isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        $sql_s = "SELECT * FROM users WHERE username = $username";
+    } 
+?>
+
     <?php 
         if (isset($_POST['p_submit'])) {
 
-            // Input Variables-----------------------------------------------------
+            // Input Variables -----------------------------------------------------
             // Firm Name
-            $_part_firm_name = $_POST['part_firm_name'];
-            $_part_firm_name = mysqli_real_escape_string($con, $_part_firm_name);
+            $_part_firm_name = h(escape($con, $_POST['part_firm_name']));
 
             // part_proprietorship_name
-            $_part_proprietorship_name = $_POST['part_proprietorship_name'];
-            $_part_proprietorship_name = mysqli_real_escape_string($con, $_part_proprietorship_name);
+            $_part_proprietorship_name = h(escape($con, $_POST['part_proprietorship_name']));
             
             // part_aadhar_number
-            $_part_aadhar_number = $_POST['part_aadhar_number'];
-            $_part_aadhar_number = mysqli_real_escape_string($con, $_part_aadhar_number);
+            $_part_aadhar_number = h(escape($con, $_POST['part_aadhar_number']));
             
             // part_pan_number
-            $_part_pan_number = $_POST['part_pan_number'];
-            $_part_pan_number = mysqli_real_escape_string($con, $_part_pan_number);
+            $_part_pan_number = h(escape($con, $_POST['part_pan_number']));
 
             // part_ward_no
-            $_part_ward_no = $_POST['part_ward_no'];
-            $_part_ward_no = mysqli_real_escape_string($con, $_part_ward_no);
+            $_part_ward_no = h(escape($con, $_POST['part_ward_no']));
 
             // part_circle_no
-            $_part_circle_no = $_POST['part_circle_no'];
-            $_part_circle_no = mysqli_real_escape_string($con, $_part_circle_no);
+            $_part_circle_no = h(escape($con, $_POST['part_circle_no']));
 
             // part_holiding_no
-            $_part_holiding_no = $_POST['part_holiding_no'];
-            $_part_holiding_no = mysqli_real_escape_string($con, $_part_holiding_no);
+            $_part_holiding_no = h(escape($con, $_POST['part_holiding_no']));
 
             // part_mobile_no
-            $_part_mobile_no = $_POST['part_mobile_no'];
-            $_part_mobile_no = mysqli_real_escape_string($con, $_part_mobile_no);
+            $_part_mobile_no = h(escape($con, $_POST['part_mobile_no']));
 
             // part_email_id
-            $_part_email_id = $_POST['part_email_id'];
-            $_part_email_id = mysqli_real_escape_string($con, $_part_email_id);
+            $_part_email_id = h(escape($con, $_POST['part_email_id']));
 
-            // File uplaods
             // part_aadhar_file
             $_part_aadhar_file = $_FILES['part_aadhar_file']['name'];
             $_part_aadhar_file_temp = $_FILES['part_aadhar_file']['tmp_name'];
             
             // move uploaded files
-            move_uploaded_file($_part_aadhar_file_temp, "images/uploads/proprietorship_doc/$_part_aadhar_file");
+            prop_m_u_f($_part_aadhar_file_temp, $_part_aadhar_file);
+            
 
             // part_pan_card_file
             $_part_pan_card_file = $_FILES['part_pan_card_file']['name'];
             $_part_pan_card_file_temp = $_FILES['part_pan_card_file']['tmp_name'];
 
             // move uploaded files
-            move_uploaded_file($_part_pan_card_file_temp, "images/uploads/proprietorship_doc/$_part_pan_card_file");
+            prop_m_u_f($_part_pan_card_file_temp, $_part_pan_card_file);
             
             // part_shop_banner
             $_part_shop_banner = $_FILES['part_shop_banner']['name'];
@@ -72,25 +71,56 @@
             $_part_rent_agreement_temp = $_FILES['part_rent_agreement']['tmp_name'];
 
             // move uploaded files
-            move_uploaded_file($_part_rent_agreement_temp, "images/uploads/proprietorship_doc/$_part_rent_agreement");
+            prop_m_u_f($_part_rent_agreement_temp, $_part_rent_agreement);
+            
 
-           if (empty($_part_firm_name) || empty($_part_proprietorship_name) || empty($_part_aadhar_number) || empty($_part_pan_number) || empty($_part_ward_no) || empty($_part_circle_no) || empty($_part_holiding_no) || empty($_part_mobile_no) || empty($_part_email_id) || empty($_part_aadhar_file) || empty($_part_pan_card_file) || empty($_part_shop_banner)) {
+           if (empty($_part_firm_name) || empty($_part_proprietorship_name) || empty($_part_aadhar_number) || empty($_part_pan_number) || empty($_part_ward_no) || empty($_part_circle_no) || empty($_part_holiding_no) || empty($_part_mobile_no)) {
 
-            echo "All Fields must be filled before submitting";
+            echo "<div class='text-danger my-3'>All Fields must be filled before submitting</div>";
 
            } else {
             // Sql 
-            $_sql = "INSERT INTO proprietorship_form (prop_reatiler_name, prop_firm_name, prop_proprietorship_name, prop_aadhar_number, prop_pan_number, prop_ward_no, prop_circle_no, prop_holiding_no, prop_mobile_no, prop_email_id, prop_aadhar_file, prop_pan_card_file, prop_rent_agreement, prop_shop_banner) VALUES('', '$_part_firm_name', '$_part_proprietorship_name', '$_part_aadhar_number', '$_part_pan_number', '$_part_ward_no', '$_part_circle_no', '$_part_holiding_no', '$_part_mobile_no', '$_part_email_id', '$_part_aadhar_file', '$_part_pan_card_file', '$_part_shop_banner', '$_part_rent_agreement')";
+            $_sql = "INSERT INTO proprietorship_form (prop_reatiler_name, prop_firm_name, prop_proprietorship_name, prop_aadhar_number, prop_pan_number, prop_ward_no, prop_circle_no, prop_holiding_no, prop_mobile_no, prop_email_id, prop_aadhar_file, prop_pan_card_file, prop_rent_agreement, prop_shop_banner) VALUES('$username', '$_part_firm_name', '$_part_proprietorship_name', '$_part_aadhar_number', '$_part_pan_number', '$_part_ward_no', '$_part_circle_no', '$_part_holiding_no', '$_part_mobile_no', '$_part_email_id', '$_part_aadhar_file', '$_part_pan_card_file', '$_part_shop_banner', '$_part_rent_agreement')";
             
             // sql_query  
-            $_sql_query = mysqli_query($con, $_sql); 
-           
+            $_sql_query = mysqli_query($con, $_sql);
+            
+            if ($_sql_query)
+                $to = sendto();
+                $senderMail = ''; 
+                $senderName = $username;
+                $subject = "New Proprietorship Reg Form Submitted";
+
+                $header = "From : ". 'incomehouse' . "\r\n";
+                $header .= "Reply To : ".'do not reply'. "\r\n";
+
+                $message = "Submitted By : " . "\r\n". "<br>";
+                $message .= "Firm Name : " . $_part_firm_name . "\r\n". "<br>";
+                $message .= "Proprietorship Name : " . $_part_proprietorship_name . "\r\n". "<br>";
+
+                $message .= "Aadhar Number : ". $_part_aadhar_number . "\r\n". "<br>";
+                $message .= "Pan Number : " . $_part_pan_number. "\r\n". "<br>";
+                $message .= "Ward Number : " . $_part_ward_no . "\r\n". "<br>";
+                $message .= "Circle Number : " . $_part_circle_no . "\r\n". "<br>";
+                $message .= "Mobile Number : " . $_part_mobile_no . "\r\n". "<br>";
+                $message .= "Eamil ID : " . $_part_email_id  . "\r\n". "<br>";
+                $message .= " Aadharfile Name : " . $_part_aadhar_file  . "\r\n". "<br>";
+                $message .= " Pan Card file Name : " . $_part_pan_card_file  . "\r\n". "<br>";
+                $message .= " Rentagreement FileName : " . $_part_rent_agreement  . "\r\n". "<br>";
+                $message .= " ShopBanner FileName : " . $_part_shop_banner  . "\r\n". "<br>";
+
+                $files = array('images/uploads/proprietorship_doc/'.$_part_aadhar_file, 'images/uploads/proprietorship_doc/'.$_part_pan_card_file,'images/uploads/proprietorship_doc/'.$_part_rent_agreement, 'images/uploads/proprietorship_doc/'.$_part_shop_banner);
+
+                $prop_send = multi_attach_mail($to, $subject, $message, $senderMail, $senderName, $files);
+                
+                // Mail sent
+                if($prop_send) {
+                    echo "<div class='text-success my-3'>Form submited</div>";
+                } else {
+                    echo "<div class='text-danger my-3'>Something Went Wrong</div>";
+                }
             }
-
         }
-        
-
-
     ?>
 
     <form action="" method="post" enctype="multipart/form-data" > 
@@ -214,14 +244,12 @@
 
        <!-- Nature Of Business -->
        <div class="row">
-
         <div class="col-12 text-white p-2 mb-3" style=" background: #3a4651; ">
             <h6 class="text-uppercase">6 : Documents</h6>
         </div>
 
         <div class="col-12">
             <div class="row">
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="part_aadhar_file">Aadhar Card</label>
@@ -252,13 +280,10 @@
                         <input type="file" name="part_rent_agreement" id="part_rent_agreement"  class="form-control up_img">
                     </div>
                 </div>
-
             </div>
         </div>
-
        </div>
        <!-- End Of Nature Of Business -->
-
        <input type="submit" value="Submit" name="p_submit" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
     </form>
 

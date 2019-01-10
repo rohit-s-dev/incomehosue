@@ -1,4 +1,5 @@
 <?php include "db.php"; ?>
+<?php require_once('func.php'); ?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>

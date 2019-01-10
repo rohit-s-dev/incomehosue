@@ -1,6 +1,9 @@
+
 <?php include "db.php"; ?>
 <?php ob_start(); ?>
 <?php session_start(); ?>
+<?php require_once('func.php'); ?>
+<?php require_once('sql_query.php') ?>
 <?php 
 
     if (!$_SESSION['user_role']) {
