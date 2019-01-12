@@ -17,3 +17,4 @@ $(document).ready(function(){
 // $(".up_img").change(function(){
 //     readURL(this);
 // });
+

@@ -31,13 +31,6 @@
         <!-- Theme initialization -->
 
         <script>
-            $(function() {
-                $('.newstape').newstape();
-            });
-        </script>
-
-
-        <script>
             var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
             {};
             var themeName = themeSettings.themeName || '';

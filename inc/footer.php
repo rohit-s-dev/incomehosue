@@ -76,6 +76,39 @@
         </div>
 
         <!-- Reference block for JS -->
+        <?php    
+            if(is_post_request()) {
+
+                $q_c_username = h($_POST['q_c_name']);
+                $q_c_message = h($_POST['q_c_message']);
+
+                if(is_blank($q_c_username) || is_blank($q_c_message)) {
+                    echo "<script type='text/javascript'>
+                    alert('Fields cannot be empty ');
+                    </script>";
+                } else {
+                    $to = sendto();
+                    $subject = 'New Customer Support mail';
+    
+                    $header = "From : " . 'incomehouse customer support' .  "\r\n". "<br>";
+                    $header .= "Reply To : " .'do not reply'. "\r\n". "<br>";
+    
+                    $message = "Username : " . $username . "\r\n". "<br>";
+                    $message .= "Message : " . $message . "\r\n". "<br>";
+    
+                    $q_c_send = mail($to, $subject , $header, $message);
+                    if($q_c_send) {
+                        echo "<script type='text/javascript'>
+                        alert('We will contact as soon as possible');
+                        </script>";
+                    } else {
+                        echo "<script type='text/javascript'>
+                        alert('Something Went Wrong');
+                        </script>";
+                    }
+                }
+            }
+        ?>
         <div class="ref" id="ref">
             <div class="color-primary"></div>
             <div class="chart">
@@ -83,31 +116,32 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
-        
         <!-- contact form -->
-
         <section class="b-contact-quick">
             <div class="card-title b-contact-quick-title py-3 text-white px-3 mb-0">
-                Customer Care
+                Customer Care 
+                <p class=''>or Contact us at: 9162372324, 9128499426</p>
             </div>
-
             <div class="card px-3 py-3 mb-0">
                 <form action="" method="post">
                     <div class="form-group mb-4">
                         <label for="name">Your name</label>
-                        <input type="text" name="name" placeholder="your name" id="name" class="form-control">
+                        <input type="text" name="q_c_name" placeholder="your name" id="name" class="form-control">
                     </div>
+
                     <div class="form-group mb-4">
                         <label for="message">Your message</label>
-                        <textarea name="message" id="message" cols="30" rows="3" class="form-control"></textarea>
+                        <textarea name="q_c_message" id="message" cols="30" rows="3" class="form-control"></textarea>
                     </div>
+
                     <input type="submit" value="send" name="b-contact-quick-send" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
                 </form>
             </div>
         </section>
-        <!-- End of contact form -->
 
+        <!-- End of contact form -->
         <script src="js/vendor.js"></script>
+        <script src="js/jquery.marquee.min.js"></script>
         <script src="js/app.js"></script>
         <script src="js/main.js"></script>
     </body>

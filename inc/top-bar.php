@@ -7,7 +7,9 @@
         </button>
         
     </div>
-    <!-- <h4 class="ml-5 text-uppercase font-weight-bold"><?php echo 'welcome ' . $_SESSION['username']; ?></h4> -->
+    <div class='ml-3 text-danger'>
+        <p  class=' l-n-n'>Lorem ipsum dolor sit amet, consectetur</p>
+    </div>
     <div class="header-block header-block-nav"> 
          
         <ul class="nav-profile">
