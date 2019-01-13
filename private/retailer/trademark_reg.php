@@ -17,7 +17,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         <?php 
         // Comapany Trademark Registration
-        if(is_post_request()) {
+        if(isset($_POST['t_comp_submit'])) {
 
             $t_company_certificate = $_FILES['t_company_certificate']['name'];
             $t_company_certificate_tmp = $_FILES['t_company_certificate']['tmp_name'];
@@ -26,7 +26,7 @@
             $t_company_pan_temp = $_FILES['t_company_pan']['tmp_name'];
 
             $t_company_m_number = h(escape($con, $_POST['t_company_m_number']));
-            $t_company_email = h(escape($_POST['t_company_email']));
+            $t_company_email = h(escape($con,$_POST['t_company_email']));
 
             $t_company_logo = $_FILES['t_company_logo']['name'];
             $t_company_logo_tmp = $_FILES['t_company_logo']['tmp_name'];
@@ -45,9 +45,11 @@
 
                 if($result) {
 
-                    $files = trad_m_u_f($t_company_certificate_tmp, $t_company_certificate);
-                    $files .= trad_m_u_f($t_company_pan_temp, $t_company_pan);
-                    $files .= trad_m_u_f($t_company_logo_tmp, $t_company_logo);
+                    trad_comp_m_u_f($t_company_certificate_tmp, $t_company_certificate);
+
+                    trad_comp_m_u_f($t_company_pan_temp, $t_company_pan);
+
+                    trad_comp_m_u_f($t_company_logo_tmp, $t_company_logo);
 
                     $to = sendto();
 
@@ -63,7 +65,13 @@
                     $message .= "Company Email : ". $t_company_email . "\r\n";
                     $message .= "Comapny Logo : " . $t_company_logo . "\r\n";
 
-                    
+                    $files = array(
+                        
+                        'images/uploads/trademark/company'.$t_company_certificate,
+                        'images/uploads/trademark/company'.$t_company_pan,
+                        'images/uploads/trademark/company'.$t_company_logo
+                    );
+
                     $trade_comp_send = multi_attach_mail($to, $subject, $message, $files);
                     
                     if ($trade_comp_send) {
@@ -82,60 +90,60 @@
 
         <?php 
             // Individual Trademark Registration
-            if(is_post_request()) {
+        //     if(isset($_POST['t_i_submit'])) {
 
-                $t_i_aadhar = $_POST['t_i_aadhar'];
-                $t_i_pan = $_POST['t_i_pan'];
-                $t_i_mobile = $_POST['t_i_mobile'];
-                $t_i_email = $_POST['t_i_email'];
+        //         $t_i_aadhar = $_POST['t_i_aadhar'];
+        //         $t_i_pan = $_POST['t_i_pan'];
+        //         $t_i_mobile = $_POST['t_i_mobile'];
+        //         $t_i_email = $_POST['t_i_email'];
 
-                $t_i_logo = $_FILES['t_i_logo']['name'];
-                $t_i_logo_tmp = $_FILES['t_i_logo']['tmp_name'];
+        //         $t_i_logo = $_FILES['t_i_logo']['name'];
+        //         $t_i_logo_tmp = $_FILES['t_i_logo']['tmp_name'];
 
-                if(is_blank($t_i_aadhar) || is_blank($t_i_pan) ||is_blank($t_i_mobile) ||is_blank($t_i_email) ||is_blank($t_i_logo)) {
-                    echo "<div class='text-danger'>Fields can't be empty</div>";
-                } elseif (e_valid($t_i_email) === false) {
-                    echo "<div class='text-danger'>Invalid Email</div>";
-                } elseif (m_numb($t_i_mobile) === false) {
-                    echo "<div class='text-danger'>Invalid Number</div>";
-                } else {
+        //         if(is_blank($t_i_aadhar) || is_blank($t_i_pan) ||is_blank($t_i_mobile) ||is_blank($t_i_email) ||is_blank($t_i_logo)) {
+        //             echo "<div class='text-danger'>Fields can't be empty</div>";
+        //         } elseif (e_valid($t_i_email) === false) {
+        //             echo "<div class='text-danger'>Invalid Email</div>";
+        //         } elseif (m_numb($t_i_mobile) === false) {
+        //             echo "<div class='text-danger'>Invalid Number</div>";
+        //         } else {
                     
-                    $sql = "SELECT * FROM trademark_indi_reg (ret_name, aadhar_number, pan_number, email_id, logo_file_ind, fill_date) VALUES('$username', '$t_i_aadhar', '$t_i_pan', '$t_i_email', '$t_i_logo', now()) ";
+        //             $sql = "SELECT * FROM trademark_indi_reg (ret_name, aadhar_number, pan_number, email_id, logo_file_ind, fill_date) VALUES('$username', '$t_i_aadhar', '$t_i_pan', '$t_i_email', '$t_i_logo', now()) ";
 
-                    $result = mysqli_query($con, $sql);
+        //             $result = mysqli_query($con, $sql);
 
-                    if($result) {
+        //             if($result) {
+        //                 $indi_moved = trad_ind_m_u_f($t_i_logo_tmp, $t_i_logo);
+        //                 if($indi_moved) {
+        //                     $send_to = sendto();
 
-                        trad_m_u_f($t_i_logo_tmp, $t_i_logo);
+        //                     $subject = "New Trademark Individual Reg Form Submitted";
+    
+        //                     $header = "From : " . 'incomehouse' .  "\r\n";
+        //                     $header .= "Reply To : " .'do not reply'. "\r\n";
+    
+        //                     $message = "Submitted By : " . $username . "\r\n";
+        //                     $message .= "Aadhar Number : " . $t_i_aadhar . "\r\n";
+        //                     $message .= "Company Mobile Number : " . $t_i_mobile . "\r\n";
+    
+        //                     $message .= "Company Email : ". $t_i_email . "\r\n";
+        //                     $message .= "Comapny Logo : " . $t_i_logo . "\r\n";
+    
+        //                     $indi_comp_send = mail($send_to, $subject ,$header, $message);
+                            
+        //                     if ($indi_comp_send) {
+        //                         echo "<div class='text-succes'>Form has been submitted</div>";
+        //                     } else {
+        //                         echo "<div class='text-danger'>Something Went Wrong</div>";
+        //                     }
+        //                 }
+        //             }
 
-                        $send_to = sendto();
-
-                        $subject = "New Trademark Individual Reg Form Submitted";
-
-                        $header = "From : " . 'incomehouse' .  "\r\n";
-                        $header .= "Reply To : " .'do not reply'. "\r\n";
-
-                        $message = "Submitted By : " . $username . "\r\n";
-                        $message .= "Aadhar Number : " . $t_i_aadhar . "\r\n";
-                        $message .= "Company Mobile Number : " . $t_i_mobile . "\r\n";
-
-                        $message .= "Company Email : ". $t_i_email . "\r\n";
-                        $message .= "Comapny Logo : " . $t_i_logo . "\r\n";
-
-                        $indi_comp_send = mail($send_to, $subject ,$header, $message);
-                        
-                        if ($indi_comp_send) {
-                            echo "<div class='text-succes'>Form has been submitted</div>";
-                        } else {
-                            echo "<div class='text-danger'>Something Went Wrong</div>";
-                        }
-                    }
-
-                }
+        //         }
                 
-            }
+        //     }
         
-        ?>
+        // ?>
         
         <div class="row">
             <div class="col-md-6">
@@ -185,7 +193,7 @@
 
                     <div class="col-md-8">
                        <div class="form-group">
-                       <input type="text" name="t_company_m_number" id="t_company_m_number" class="form-control" placeholder="+91" >
+                       <input type="text" name="t_company_m_number" id="t_company_m_number" class="form-control" placeholder="+91" maxlength="10"  onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;">
                        </div>
                     </div>
                 </div><!-- Company Mobile Number -->
@@ -219,7 +227,7 @@
                         </div>
                     </div>
                 </div><!-- Company Logo -->
-                <input type="submit" value="Submit" name="t_submit" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
+                <input type="submit" value="Submit" name="t_comp_submit" class="btn px-5 py-2 bg-success text-white  m-auto d-block">
             </div>
         </form> <!-- end of company trademark-->
 

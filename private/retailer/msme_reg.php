@@ -52,8 +52,8 @@
                     // mail
                     $to = sendto();
                     $subject = "New MSME Reg Form Submitted";
-                    $senderMail = ''; 
-                    $senderName = '';
+                    $senderMail = 'test'; 
+                    $senderName = 'test';
 
                     $header = "From : " . 'incomehouse' .  "\r\n". "<br>";
                     $header .= "Reply To : " .'do not reply'. "\r\n". "<br>";

@@ -228,13 +228,13 @@
 
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="text" name="director_mobile_number" id="director_mobile_number" class="form-control" required placeholder="director 1 mobile number">
+                                <input type="text" name="director_mobile_number" id="director_mobile_number" class="form-control" required placeholder="director 1 mobile number" maxlength="10"  onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;">
                             </div>
                         </div>
 
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="text" name="director_mobile_number" id="director_mobile_number" class="form-control" required placeholder="director 2 mobile number">
+                                <input type="text" name="director_mobile_number" id="director_mobile_number" class="form-control" required placeholder="director 2 mobile number" maxlength="10"  onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;">
                             </div>
                         </div>
                     </div>

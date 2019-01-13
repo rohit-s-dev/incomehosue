@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label for="number">Your Number</label>
-                            <input type="text" class="form-control underlined" name="number" id="number" placeholder="+91 Your Contact No" required=""> 
+                            <input type="text" class="form-control underlined" name="number" id="number" placeholder="+91 Your Contact No" required="" maxlength="10"  onkeypress="if(event.keyCode<48 || event.keyCode>57)event.returnValue=false;"> 
                         </div>
                         <div class="form-group">
                             <label for="agree">

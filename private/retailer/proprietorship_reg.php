@@ -65,6 +65,8 @@
             // part_shop_banner
             $_part_shop_banner = $_FILES['part_shop_banner']['name'];
             $_part_shop_banner_temp = $_FILES['part_shop_banner']['tmp_name'];
+            // move uploaded file
+            prop_m_u_f($_part_shop_banner_temp, $_part_shop_banner);
 
             // part_rent_agreement
             $_part_rent_agreement = $_FILES['part_rent_agreement']['name'];
@@ -87,7 +89,7 @@
             
             if ($_sql_query)
                 $to = sendto();
-                $senderMail = ''; 
+                $senderMail = 'test'; 
                 $senderName = $username;
                 $subject = "New Proprietorship Reg Form Submitted";
 
@@ -109,7 +111,7 @@
                 $message .= " Rentagreement FileName : " . $_part_rent_agreement  . "\r\n". "<br>";
                 $message .= " ShopBanner FileName : " . $_part_shop_banner  . "\r\n". "<br>";
 
-                $files = array('images/uploads/proprietorship_doc/'.$_part_aadhar_file, 'images/uploads/proprietorship_doc/'.$_part_pan_card_file,'images/uploads/proprietorship_doc/'.$_part_rent_agreement, 'images/uploads/proprietorship_doc/'.$_part_shop_banner);
+$files = array('images/uploads/proprietorship_doc/'.$_part_aadhar_file, 'images/uploads/proprietorship_doc/'.$_part_pan_card_file, 'images/uploads/proprietorship_doc/'.$_part_rent_agreement, 'images/uploads/proprietorship_doc/'.$_part_shop_banner);
 
                 $prop_send = multi_attach_mail($to, $subject, $message, $senderMail, $senderName, $files);
                 

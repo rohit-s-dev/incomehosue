@@ -77,7 +77,7 @@
 
         <!-- Reference block for JS -->
         <?php    
-            if(is_post_request()) {
+            if(isset($_POST['b-contact-quick-send'])) {
 
                 $q_c_username = h($_POST['q_c_name']);
                 $q_c_message = h($_POST['q_c_message']);
@@ -120,7 +120,7 @@
         <section class="b-contact-quick">
             <div class="card-title b-contact-quick-title py-3 text-white px-3 mb-0">
                 Customer Care 
-                <p class=''>or Contact us at: 9162372324, 9128499426</p>
+                <!-- <p class=''>or Contact us at: 9162372324, 9128499426</p> -->
             </div>
             <div class="card px-3 py-3 mb-0">
                 <form action="" method="post">
