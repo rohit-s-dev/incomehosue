@@ -17,6 +17,25 @@
                     <a href="index.php">
                         <i class="fa fa-home"></i> Dashboard </a>
                 </li>
+
+                <li>
+
+                    <a href="">
+                        <i class="fa fa-users"></i> Retailer Management
+                        <i class="fa arrow"></i>
+                    </a>
+
+                    <ul class="sidebar-nav">
+
+                        <li>
+                            <a href="users.php?source=add_user"> Create User </a>
+                        </li>
+
+                        <li>
+                            <a href="users.php?source=all_users"> All users </a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="">
                         <i class="fa fa-area-chart"></i> Banking
