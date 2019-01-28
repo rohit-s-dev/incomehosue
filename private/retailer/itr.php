@@ -4,7 +4,7 @@
 
 <div class="container-fluid my-5 py-5">
     <div class="col-12 text-white p-2 mb-3" style=" background: #3a4651; ">
-        <h6 class="">ITR FORM(PAN APPLICATION FORM)<span class="text-muted ml-3">Every field is  to submit</span></h6>
+        <h6 class="">ITR FORM(PAN APPLICATION FORM)<span class="text-muted ml-3">Every field is Required</span></h6>
     </div>
 <?php 
     if(isset($_SESSION['username'])) {

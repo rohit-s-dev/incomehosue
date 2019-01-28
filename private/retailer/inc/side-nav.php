@@ -76,7 +76,7 @@
                             <a href="#"> IRCTC </a>
                         </li>
                         <li>
-                            <a href="#"> Fastag </a>
+                            <a href="fastag.php"> Fastag </a>
                         </li>
                     </ul>
                 </li>
