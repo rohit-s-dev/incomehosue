@@ -8,9 +8,105 @@
    </div>
 
    <?php 
-  
+    if(isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        $sql_s = "SELECT * FROM users WHERE username = $username";
+    } 
+?>
+
+   <?php 
+
+
+    //Bharat Pay 
   if(is_post_request()) {
+
+    // Escaping Inputs  
+    $name = escape($con, h($_POST['name']));
+    $pan_no = escape($con, h($_POST['pan_no']));
+    $aadhar_no = escape($con, h($_POST['aadhar_no']));
+
+    $d_o_b = escape($con, h($_POST['aadhar_no']));
+    $mob_no = escape($con, h($_POST['mob_no']));
+
+    $email_id = escape($con, h($_POST['email_id']));
+    $ac_number = escape($con, h($_POST['ac_number']));
+    $ifsc_code = escape($con, h($_POST['ifsc_code']));
+    $bank_name = escape($con, h($_POST['bank_name']));
+    $branch_name = escape($con, h($_POST['branch_name']));
     
+    // $pan_card doc
+    $pan_card_doc =  $_FILES['pan_card_doc']['name'];
+    $pan_card_doc_tmp = $_FILES['pan_card_doc']['tmp_name'];
+
+    // $aadhar_card
+    $aadhar_card_doc = $_FILES['aadhar_card']['name'];
+    $aadhar_card_tmp = $_FILES['aadhar_card']['tmp_name'];
+
+    // $bank_pass_doc
+    $bank_pass_doc = $_FILES['bank_pass_doc']['name'];
+    $bank_pass_doc_tmp = $_FILES['bank_pass_doc']['tmp_name'];
+    
+    if(is_blank($name) || is_blank($pan_no) || is_blank($aadhar_no) || is_blank($d_o_b) || is_blank($mob_no) || is_blank($email_id) || is_blank($ac_number) || is_blank($ifsc_code) || is_blank($bank_name) || is_blank($branch_name) || is_blank($pan_card_doc) || is_blank($aadhar_card_doc) || is_blank($bank_pass_doc) ) {
+
+        echo "<div class='text-danger'>Fields Can't be empty .</div>";
+
+    }  elseif (less_than($name , 3) && less_than($pan_no , 3) && less_than($aadhar_no , 3) && less_than($mob_no , 3) && less_than($ac_number , 3) && less_than($ifsc_code , 3) && less_than($bank_nam , 3) && less_than($branch_name , 3)) {
+        echo "<div class='text-danger'>Characters must be graeater than 3 </div>";
+    } elseif (!str($mob_no)) {
+        
+        echo "<div class='text-danger'>Invalid Mobile Number .</div>";
+
+    } elseif (e_valid($email_id) === false) {
+        echo "<div class='text-danger'>Invalid Email ID .</div>";
+    }  else {
+
+        $sql = "INSERT INTO bharat_pay(submit_by, b_name, pan_no, aadhar_no, d_o_b, mob_number, email_id, acc_numb, ifsc_code, bank_name, branch_name, pan_card_doc, aadhar_card_doc, bank_pass_w_st, s_date) ";
+        $sql .= " VALUES('$username' ,'$name', '$pan_no', '$aadhar_no', '$d_o_b', '$mob_no', '$email_id', '$ac_number', '$ifsc_code', '$bank_name', '$branch_name', '$pan_card_doc', '$aadhar_card_doc', '$bank_pass_doc', now() ) ";
+        $sql_query = mysqli_query($con, $sql);
+
+        if($sql_query) {
+             
+            //moving uploade files
+            $pathname = 'bharat_pay';
+            m_u_f($pan_card_doc_tmp, $pathname, $pan_card_doc);
+            m_u_f($aadhar_card_tmp, $pathname, $aadhar_card_doc);
+            m_u_f($bank_pass_doc_tmp, $pathname, $bank_pass_doc);
+            
+                $to = sendto();
+                $subject = "New Bharat Reg Form Submitted";
+                $senderMail = 'test'; 
+                $senderName = 'test';
+
+                $header = "From : " . 'incomehouse' .  "\r\n". "<br>";
+                $header .= "Reply To : " .'do not reply'. "\r\n". "<br>";
+
+                $message = "Submitted By : " . $username . "\r\n". "<br>";
+                $message .= "Name : " . $name . "\r\n". "<br>";
+                $message .= "Pan Number : " . $pan_no . "\r\n". "<br>";
+                $message .= "Date Of Birth : " . $d_o_b . "\r\n". "<br>";
+
+                $message .= "Mobile Number : ". $mob_no . "\r\n". "<br>";
+                $message .= "Aadhar Number : " . $aadhar_no . "\r\n". "<br>";
+                $message .= "Account Number : " . $ac_number . "\r\n". "<br>";
+                $message .= "IFSC Code : " . $ifsc_code . "\r\n". "<br>";
+                $message .= "Bank Name : " . $bank_name  . "\r\n". "<br>";
+                $message .= "Branch Name : " . $branch_name  . "\r\n". "<br>";
+                $message .= "Pan Card file : " . $pan_card_doc  . "\r\n". "<br>";
+                $message .= "Aadhar Card File : " . $aadhar_card_doc  . "\r\n". "<br>";
+                $message .= "Bank Passbook With Statement : " . $bank_pass_doc  . "\r\n". "<br>";
+                
+                $files = array('images/uploads/bharat_pay/'.$aadhar_card_doc,'images/uploads/bharat_pay/'.$pan_card_doc,'images/uploads/bharat_pay/'.$bank_pass_doc);
+                
+                // Mail Send
+                $bharat_send = multi_attach_mail($to, $subject, $message, $senderMail, $senderName, $files);
+
+            if($bharat_send) {
+                echo "<div class='text-success'>Form Submitted !</div>";
+            } else {
+                echo "<div class='text-danger'>Something Went Wrong !</div>";
+            }
+        }
+    }
   }
    
    
@@ -39,7 +135,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="d_o_b">D-O-B :-</label>
-                        <input type="text" name="d_o_b" id="d_o_b" class="form-control">
+                        <input type="date" name="d_o_b" id="d_o_b" class="form-control">
                     </div>
                 </div>
             </div>

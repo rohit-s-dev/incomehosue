@@ -70,6 +70,12 @@ function dsc_m_u_f($tempfile, $filename) {
    return move_uploaded_file($tempfile, "images/uploads/digital_signature/$filename");
 }
 
+// universal move uploaded file
+function m_u_f($tempfile, $pathname, $filename) {
+   return move_uploaded_file($tempfile, "images/uploads/$pathname/$filename");
+}
+
+
 // is string
 function str($value) {
     return is_string($value);
